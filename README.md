@@ -1,6 +1,6 @@
-# Craft
+# authentication-integration-app
 
-craft is CRA template powered by [Create React App](https://github.com/facebook/create-react-app).
+auhtentication-integration-app is application for implement of authentication concept
 
 ## Development
 
