@@ -1,9 +1,13 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
+import { useHistory } from 'react-router-dom';
 import fetchData from '../../utils/fetchData';
+import { setAuth } from '../../utils/auth';
 import MobileViewWrapper from '../../components/MobileViewWrapper';
 
 const Login = () => {
+  const history = useHistory();
+
   const onFinish = async value => {
     const res = await fetchData({
       url: `${process.env.REACT_APP_BASE_API}/login`,
@@ -13,7 +17,10 @@ const Login = () => {
         password: value.password
       }
     });
-    console.log(res);
+    if (res.status === 200 && res.statusText === 'OK') {
+      setAuth(res?.data?.jwt);
+      history.push('/');
+    }
   };
   return (
     <MobileViewWrapper>
