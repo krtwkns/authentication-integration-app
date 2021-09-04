@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Input, Button } from 'antd';
 
-const Home = () => {
+const Room = () => {
   const [roomName, setRoomName] = useState('');
 
   const handleRoomNameChange = event => {
@@ -10,18 +11,21 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <input
-        type="text"
-        placeholder="Room"
-        value={roomName}
-        onChange={handleRoomNameChange}
-        className="text-input-field"
-      />
-      <Link to={`/${roomName}`} className="enter-room-button">
-        Join room
-      </Link>
+      <h1>Write your room to start chat</h1>
+      <Input type={'large'} value={roomName} onChange={handleRoomNameChange} />
+      <div
+        style={{
+          marginTop: '1em',
+          display: 'flex',
+          justifyContent: 'flex-end'
+        }}
+      >
+        <Link to={`chat/${roomName}`}>
+          <Button type="primary">Join Room!</Button>
+        </Link>
+      </div>
     </div>
   );
 };
 
-export default Home;
+export default Room;

@@ -1,6 +1,14 @@
 @import '_normalize';
 @import '~antd/dist/antd.css';
 
+@import './components/chat-message';
+@import './components/chat-room';
+@import './components/typing-animation';
+@import './components/typing-message';
+@import './components/user-avatar';
+@import './components/users';
+@import './components/new-message-form';
+
 body,
 html {
   font-family: 'Noto Sans', sans-serif;

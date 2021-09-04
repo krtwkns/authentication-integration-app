@@ -1,10 +1,11 @@
 import React from 'react';
 import MobileViewWrapper from '../../components/MobileViewWrapper';
+import ChatRoom from '../../components/ChatRoom';
 
 const Chat = () => {
   return (
     <MobileViewWrapper>
-      <h1>Chat</h1>
+      <ChatRoom />
     </MobileViewWrapper>
   );
 };
