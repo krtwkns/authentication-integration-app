@@ -13,4 +13,8 @@ const removeAuth = () => {
   localStorage.removeItem('auth');
 };
 
-export { checkAuth, setAuth, removeAuth };
+const getToken = () => {
+  return JSON.parse(localStorage.getItem('auth'))?.value;
+};
+
+export { checkAuth, setAuth, removeAuth, getToken };

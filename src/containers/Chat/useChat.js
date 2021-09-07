@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
-import axios from 'axios';
+import fetchData from '../../utils/fetchData';
 
 const USER_JOIN_CHAT_EVENT = 'USER_JOIN_CHAT_EVENT';
 const USER_LEAVE_CHAT_EVENT = 'USER_LEAVE_CHAT_EVENT';
@@ -18,8 +18,11 @@ const useChat = roomId => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get('https://api.randomuser.me/');
-      const result = response.data.results[0];
+      const res = await fetchData({
+        url: 'https://api.randomuser.me/',
+        method: 'GET'
+      });
+      const result = res.data.results[0];
       setUser({
         name: result.name.first,
         picture: result.picture.thumbnail
@@ -31,10 +34,11 @@ const useChat = roomId => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await axios.get(
-        `${SOCKET_SERVER_URL}/rooms/${roomId}/users`
-      );
-      const result = response.data.users;
+      const res = await fetchData({
+        url: `${SOCKET_SERVER_URL}/rooms/${roomId}/users`,
+        method: 'GET'
+      });
+      const result = res.data.users;
       setUsers(result);
     };
 
@@ -43,10 +47,11 @@ const useChat = roomId => {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const response = await axios.get(
-        `${SOCKET_SERVER_URL}/rooms/${roomId}/messages`
-      );
-      const result = response.data.messages;
+      const res = await fetchData({
+        url: `${SOCKET_SERVER_URL}/rooms/${roomId}/messages`,
+        method: 'GET'
+      });
+      const result = res.data.messages;
       setMessages(result);
     };
 

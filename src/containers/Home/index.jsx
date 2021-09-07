@@ -16,9 +16,14 @@ const Home = () => {
         <h2>Just Chat</h2>
         <Button onClick={onClickLogout}>Logout</Button>
       </div>
-      <div>
+      <div style={{ margin: '14px 0' }}>
         <Link to="/room">
           <Button type="primary">Try chat now!</Button>
+        </Link>
+      </div>
+      <div>
+        <Link to="/hello-world">
+          <Button type="primary">Hello World</Button>
         </Link>
       </div>
     </MobileViewWrapper>

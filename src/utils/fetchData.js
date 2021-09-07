@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const fetchData = ({ url, method = 'GET', data = {} }) =>
+const fetchData = ({ headers = {}, url, method = 'GET', data = {} }) =>
   axios({
+    headers,
     url,
     method,
     data
