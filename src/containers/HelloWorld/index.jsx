@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import MobileViewWrapper from '../../components/MobileViewWrapper';
 import fetchData from '../../utils/fetchData';
 import { getToken } from '../../utils/auth';
 
 const HelloWorld = () => {
+  const [data, setData] = useState('Loading ...');
   useEffect(() => {
     const requestHelloWorld = async () => {
       const token = getToken();
@@ -14,14 +15,13 @@ const HelloWorld = () => {
         url: `${process.env.REACT_APP_BASE_API}/api/hello-world`,
         method: 'GET'
       });
-      console.log(res);
+      setData(res?.data?.data);
     };
-
     requestHelloWorld();
-  });
+  }, []);
   return (
     <MobileViewWrapper>
-      <h1>Hello World</h1>
+      <h1>{data}</h1>
     </MobileViewWrapper>
   );
 };
