@@ -1,17 +1,18 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import LoginContainer from './index';
-import { Input } from 'antd';
+import { render } from '@testing-library/react';
 
 describe('Login Container', () => {
-  const wrapper = shallow(<LoginContainer />);
-  it('should render my component', () => {
-    expect(wrapper).toMatchSnapshot();
+  it('should render username input', function() {
+    const { getByTestId } = render(<LoginContainer />);
+    expect(getByTestId('username-input')).toBeInTheDocument();
   });
-  it('should render Input Component is 1', function() {
-    expect(wrapper.find(Input).length).toBe(1);
+  it('should render password input', function() {
+    const { getAllByTestId } = render(<LoginContainer />);
+    expect(getAllByTestId('password-input')).toHaveLength(1);
   });
-  it('should render Input.Password Component is 1', function() {
-    expect(wrapper.find(Input.Password).length).toBe(1);
+  it('should render button submit', function() {
+    const { getByRole } = render(<LoginContainer />);
+    expect(getByRole('button')).toBeInTheDocument();
   });
 });
